@@ -10,22 +10,32 @@ public class BadCodeExample {
     public static void main(String[] args) {
 
         WebDriver webDriver = new ChromeDriver();
+        String searchTerm = "Selenium";
         webDriver.get("https://google.com");
         WebElement searchField = webDriver.findElement(By.xpath("//input[@name='q']"));
-        searchField.sendKeys("Selenium", Keys.ENTER);
+        searchField.sendKeys(searchTerm, Keys.ENTER);
         List<WebElement> resultsList = webDriver.findElements(By.xpath("//div[@class='srg']/div[@class='g']"));
         System.out.println("Results on screen are :" + resultsList.size());
+//
+//        for (int i = 0; i < resultsList.size(); i++) {
+//            System.out.println(resultsList.get(i).getText());
+//
+//            if (resultsList.contains(searchTerm)) {
+//                System.out.println("searchTerm found");
+//            } else {
+//                System.out.println("searchTerm is not found");
+//            }
+//        }
 
-        String searchTerm = "Selenium";
+        //for each WebElement 'result' in List of WebElements 'resultsList' print text
 
+        for (WebElement result : resultsList) {
+            String resultText = result.getText();
 
-        for (int i = 0; i < resultsList.size(); i++) {
-            System.out.println(resultsList.get(i).getText());
-
-            if (resultsList.contains(searchTerm)) {
-                System.out.println("searchTerm found");
+            if (resultText.toLowerCase().contains(searchTerm.toLowerCase())) {
+                System.out.println("searchTerm " + searchTerm + " found in block:\n" + resultText);
             } else {
-                System.out.println("searchTerm is not found");
+                System.out.println("searchTerm " + searchTerm + "is NOT found in block:\n" + resultText);
             }
         }
 
