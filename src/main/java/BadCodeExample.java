@@ -9,12 +9,12 @@ import java.util.List;
 public class BadCodeExample {
     public static void main(String[] args) {
 
-        WebDriver webDriver = new ChromeDriver();
+        WebDriver driver = new ChromeDriver();
         String searchTerm = "Selenium";
-        webDriver.get("https://google.com");
-        WebElement searchField = webDriver.findElement(By.xpath("//input[@name='q']"));
+        driver.get("https://google.com");
+        WebElement searchField = driver.findElement(By.xpath("//input[@name='q']"));
         searchField.sendKeys(searchTerm, Keys.ENTER);
-        List<WebElement> resultsList = webDriver.findElements(By.xpath("//div[@class='srg']/div[@class='g']"));
+        List<WebElement> resultsList = driver.findElements(By.xpath("//div[@class='srg']/div[@class='g']"));
         System.out.println("Results on screen are :" + resultsList.size());
 //
 //        for (int i = 0; i < resultsList.size(); i++) {
@@ -39,6 +39,6 @@ public class BadCodeExample {
             }
         }
 
-        webDriver.quit();
+        driver.quit();
     }
 }
