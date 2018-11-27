@@ -4,9 +4,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class LoginSubmitPage {
-
-    private WebDriver driver;
+public class LoginSubmitPage extends BasePage {
 
     @FindBy(xpath = "//input[@id='username']")
     private WebElement emailField;

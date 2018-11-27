@@ -3,9 +3,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class LoginPage {
-
-    private WebDriver driver;
+public class LoginPage extends BasePage {
 
     @FindBy(xpath = "//input[@id='login-email']")
     private WebElement emailField;
@@ -21,24 +19,19 @@ public class LoginPage {
         PageFactory.initElements(driver, this);
     }
 
-    public LoginSubmitPage loginToLoginSubmit(String userEmail, String userPass) {
+    public <T> T login(String userEmail, String userPass) {
         emailField.sendKeys(userEmail);
         passwordField.sendKeys(userPass);
         signInButton.click();
-        return new LoginSubmitPage(driver);
-    }
-
-    public HomePage loginToHome(String userEmail, String userPass) {
-        emailField.sendKeys(userEmail);
-        passwordField.sendKeys(userPass);
-        signInButton.click();
-        return new HomePage(driver);
-    }
-
-    public void login(String userEmail, String userPass) {
-        emailField.sendKeys(userEmail);
-        passwordField.sendKeys(userPass);
-        signInButton.click();
+        if (driver.getCurrentUrl().contains("/feed")) {
+            return (T) new HomePage(driver);
+        }
+        if (driver.getCurrentUrl().contains("/login-submit")) {
+            return (T) new LoginSubmitPage(driver);
+        }
+        else {
+            return (T) new LoginPage(driver);
+        }
     }
 
     public boolean isPageLoaded() {
@@ -47,7 +40,7 @@ public class LoginPage {
                 && driver.getCurrentUrl().equals("https://www.linkedin.com/");
     }
 
-    public Boolean enableSignInButton() {
+    public boolean enableSignInButton() {
         return signInButton.isEnabled();
     }
 
