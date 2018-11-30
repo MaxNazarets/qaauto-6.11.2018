@@ -37,10 +37,6 @@ public class LoginSubmitPage extends BasePage {
         return driver.findElement(By.xpath("//div[@id='error-for-password']")).getText();
     }
 
-    public String getTextEmailField() {
-        return emailField.getAttribute("value");
-    }
-
     public String getBorderColorEmailField() {
         return emailField.getAttribute("color");
     }

@@ -1,4 +1,5 @@
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -11,6 +12,9 @@ public class HomePage extends BasePage {
 
     @FindBy(xpath = "//button[@data-control-name='nav.settings']")
     private WebElement meButton;
+
+    @FindBy(xpath = "//div[@class='nav-search-bar']//input")
+    private WebElement searchField;
 
     public HomePage(WebDriver driver) {
         this.driver = driver;
@@ -32,5 +36,11 @@ public class HomePage extends BasePage {
     }
 
     public void selectMeButton() {meButton.click();}
+
+    public SearchResultsPage search(String searchTerm) {
+        searchField.sendKeys(searchTerm);
+        searchField.sendKeys(Keys.ENTER);
+        return new SearchResultsPage(driver);
+    }
 }
 
