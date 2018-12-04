@@ -1,4 +1,3 @@
-import com.beust.jcommander.Parameter;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
@@ -52,33 +51,30 @@ public class LoginTest {
     }
 
     @DataProvider
-    public Object[][] inValidLoginSubmitPageEmailRecognize() {
+    public Object[][] inValidLoginSubmitPage() {
         return new Object[][]{
-                {"max.nazarets.wrong@gmail.com", "test12345678", ""},
-                {"max.nazarets.wrong@gmail.com", "test123"},
-                {"max.nazarets.test@gmailcom", "test12345678"},
+                {"max.nazarets.wrong@gmail.com", "test12345678",
+                 "Hmm, we don't recognize that email. Please try again.", "", "#d11124", ""},
+                {"max.nazarets.wrong@gmail.com", "test123",
+                 "Hmm, we don't recognize that email. Please try again.", "", "#d11124", ""},
+                {"max.nazarets.test@gmailcom", "test12345678",
+                 "Hmm, we don't recognize that email. Please try again.", "", "#d11124", ""},
+
+                {"max.nazarets.testgmail.com", "test12345678",
+                 "Please enter a valid username", "", "#d11124", ""},
+                {"max.nazarets.test@@gmailcom","test12345678",
+                 "Please enter a valid username", "", "#d11124", ""},
+                {"test12345678", "max.nazarets.test@gmail.com",
+                 "Please enter a valid username", "", "#d11124", ""},
+                {"<script>alert(123)</script>", "test12345678",
+                 "Please enter a valid username", "", "#d11124", ""},
+
+                {"max.nazarets.test@gmail.com", "test123",
+                 "", "Hmm, that's not the right password. Please try again or request a new one.", "", "#d11124"},
+                {"max.nazarets.test@gmail.com", "t",
+                 "", "Hmm, that's not the right password. Please try again or request a new one.", "", "#d11124"},
         };
     }
-
-    @DataProvider
-    public Object[][] inValidLoginSubmitPageUserName() {
-        return new Object[][]{
-                {"max.nazarets.testgmail.com", "test12345678"},
-                {"max.nazarets.test@@gmailcom","test12345678"},
-                {"test12345678", "max.nazarets.test@gmail.com"},
-                {"<script>alert(123)</script>", "test12345678"},
-
-        };
-    }
-
-    @DataProvider
-    public Object[][] inValidLoginSubmitPagePass() {
-        return new Object[][]{
-                {"max.nazarets.test@gmail.com", "test123"},
-                {"max.nazarets.test@gmail.com", "t"},
-        };
-    }
-
 
     @Test(dataProvider = "validLoginPage")
     public void positiveLoginTest(String userEmail, String userPass) {
@@ -101,39 +97,20 @@ public class LoginTest {
         Assert.assertTrue(loginPage.isPageLoaded(),"LogIn page is not loaded");
     }
 
-    @Test(dataProvider = "inValidLoginSubmitPageEmailRecognize")
+    @Test(dataProvider = "inValidLoginSubmitPage")
     public void wrongUserEmailTest(String userEmail,
                                    String userPass,
-                                   String errorEmail,
-                                   String errorPass,
+                                   String errorEmailMessage,
+                                   String errorPassMessage,
                                    String borderColorEmail,
                                    String borderColorPass) {
         loginPage.login(userEmail, userPass);
         loginSubmitPage = new LoginSubmitPage(driver);
         Assert.assertEquals(driver.getTitle(),"Sign In to LinkedIn", "Login Page title is wrong");
-        Assert.assertEquals(loginSubmitPage.getErrorEmailField(), "Hmm, we don't recognize that email. Please try again.","Error is not be showed");
-        Assert.assertEquals(loginSubmitPage.getBorderColorEmailField(),"#d11124","The color of emailField's border is not red");
-        Assert.assertEquals(loginSubmitPage.getErrorPassField(),"","userPass Validation in empty");
-    }
-
-    @Test(dataProvider = "inValidLoginSubmitPageUserName")
-    public void wrongUserEmailTextTest(String userEmail, String userPass) {
-        loginPage.login(userEmail, userPass);
-        loginSubmitPage = new LoginSubmitPage(driver);
-        Assert.assertEquals(driver.getTitle(),"Sign In to LinkedIn", "Login Page title is wrong");
-        Assert.assertEquals(loginSubmitPage.getErrorEmailField(), "Please enter a valid username","Error is not be showed");
-        Assert.assertEquals(loginSubmitPage.getBorderColorEmailField(),"#d11124","The color of emailField's border is not red");
-        Assert.assertEquals(loginSubmitPage.getErrorPassField(),"","userPass Validation in empty");
-    }
-
-    @Test(dataProvider = "inValidLoginSubmitPagePass")
-    public void wrongUserPassTest(String userEmail, String userPass) {
-
-        loginPage.login(userEmail, userPass);
-        loginSubmitPage = new LoginSubmitPage(driver);
-        Assert.assertEquals(driver.getTitle(),"Sign In to LinkedIn", "Login Page title is wrong");
-        Assert.assertEquals(loginSubmitPage.getErrorPassField(), "Hmm, that's not the right password. Please try again or request a new one.","Error is not be showed");
-        Assert.assertEquals(loginSubmitPage.getBorderColorPassField(),"#d11124","The color of passField's border is not red");
+        Assert.assertEquals(loginSubmitPage.getErrorEmailField(), errorEmailMessage,"Error is not be showed");
+        Assert.assertEquals(loginSubmitPage.getErrorPassField(), errorPassMessage, "errorPass is wrong");
+        Assert.assertEquals(loginSubmitPage.getBorderColorEmailField(),borderColorEmail,"The color of emailField's border is not red");
+        Assert.assertEquals(loginSubmitPage.getErrorPassField(),borderColorPass,"userPass Validation is wrong");
     }
 
 }

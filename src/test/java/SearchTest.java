@@ -5,6 +5,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class SearchTest {
@@ -50,10 +51,12 @@ public class SearchTest {
         Assert.assertTrue(homePage.isPageLoaded(),"Home page is not loaded");
 
         SearchResultsPage searchResultsPage = homePage.search(searchTerm);
-        Assert.assertTrue(searchResultsPage.isPageLoaded(),"SearchResults pahe is not loaded");
+        Assert.assertTrue(searchResultsPage.isPageLoaded(),"SearchResults page is not loaded");
+        Assert.assertEquals(searchResultsPage.getSearchResultsCount(), 10, "Count of searchResultsList is not equal 10");
 
-//        WebElement list, size(), getResultCount, assert сравнивать числа
-//        цикл, вернуть результат в тест, а в тесте сделать ассерт
-
+        List<String> searchResultsList = searchResultsPage.getSearchResults();
+        for (String searchResult : searchResultsList) {
+            Assert.assertTrue(searchResult.toLowerCase().contains(searchTerm.toLowerCase()), "SearchTerm " + searchTerm + " not found in:\n" + searchResult);
+        }
     }
 }
