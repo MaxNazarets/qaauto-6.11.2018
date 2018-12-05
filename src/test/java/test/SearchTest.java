@@ -1,32 +1,13 @@
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
+package test;
+
 import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import page.HomePage;
+import page.SearchResultsPage;
 
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
-public class SearchTest {
-
-    WebDriver driver;
-    private HomePage homePage;
-
-    @BeforeMethod
-    public void setUp() {
-        driver = new ChromeDriver();
-        driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-        driver.get("https://www.linkedin.com");
-        LoginPage loginPage = new LoginPage(driver);
-        homePage = loginPage.login("max.nazarets.test@gmail.com","test12345678");
-    }
-
-    @AfterMethod(alwaysRun = true)
-    public void tearDown() {
-        driver.quit();
-    }
+public class SearchTest extends BaseTest{
 
     /**
      * Precondition
@@ -47,7 +28,9 @@ public class SearchTest {
      */
     @Test
     public void basicSearchTest() {
-        String searchTerm = "hr";
+        HomePage homePage = loginPage.login("max.nazarets.tst@gmail.com","makrusnet123");
+        String searchTerm = "HR";
+
         Assert.assertTrue(homePage.isPageLoaded(),"Home page is not loaded");
 
         SearchResultsPage searchResultsPage = homePage.search(searchTerm);
@@ -55,8 +38,10 @@ public class SearchTest {
         Assert.assertEquals(searchResultsPage.getSearchResultsCount(), 10, "Count of searchResultsList is not equal 10");
 
         List<String> searchResultsList = searchResultsPage.getSearchResults();
+
         for (String searchResult : searchResultsList) {
-            Assert.assertTrue(searchResult.toLowerCase().contains(searchTerm.toLowerCase()), "SearchTerm " + searchTerm + " not found in:\n" + searchResult);
+            Assert.assertTrue(searchResult.toLowerCase().contains(searchTerm.toLowerCase()),
+                    "SearchTerm " + searchTerm + " not found in:\n" + searchResult);
         }
     }
 }

@@ -1,3 +1,5 @@
+package page;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -15,9 +17,6 @@ public class LoginSubmitPage extends BasePage {
     @FindBy(xpath = "//form[@class='login__form']")
     private WebElement loginForm;
 
-    @FindBy(xpath = "//label[@for='username']")
-    private WebElement labelEmailField;
-
     public LoginSubmitPage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
@@ -26,7 +25,7 @@ public class LoginSubmitPage extends BasePage {
     public boolean isPageLoaded() {
         return loginForm.isDisplayed()
                 && driver.getTitle().equals("Sign In to LinkedIn")
-                && driver.getCurrentUrl().equals("uas/login-submit");
+                && driver.getCurrentUrl().contains("uas/login-submit");
     }
 
     public String getErrorEmailField() {
@@ -37,11 +36,4 @@ public class LoginSubmitPage extends BasePage {
         return driver.findElement(By.xpath("//div[@id='error-for-password']")).getText();
     }
 
-    public String getBorderColorEmailField() {
-        return emailField.getAttribute("color");
-    }
-
-    public String getBorderColorPassField() {
-        return passField.getAttribute("value");
-    }
 }

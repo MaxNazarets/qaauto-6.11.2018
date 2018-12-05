@@ -1,3 +1,6 @@
+package page;
+
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -14,34 +17,28 @@ public class SearchResultsPage extends BasePage {
     }
 
     @FindBy(xpath = "//div[contains(@class, 'search-filters-bar')]")
-    private WebElement searchFilterBar;
+    private WebElement searchFiltersBar;
 
-    @FindBy(css = "ul.search-results__list li.search-result")
-    private List<WebElement> searchResultsList;
+    @FindBy(xpath = "//li[contains(@class, 'search-result__occluded-item')]")
+    private List<WebElement> searchResults;
 
     public boolean isPageLoaded() {
-        return searchFilterBar.isDisplayed()
+        return searchFiltersBar.isDisplayed()
                 && driver.getTitle().contains("Search | LinkedIn")
                 && driver.getCurrentUrl().contains("/search/results");
     }
 
     public int getSearchResultsCount() {
-        return searchResultsList.size();
+        return searchResults.size();
     }
 
-//    public List<WebElement> getSearchResults2() {
-//        for (int i = 0; i <= getSearchResultsCount(); i++) {
-//            searchResultsList.get(i).getText();
-//        }
-//        return searchResultsList;
-//}
-
     public List<String> getSearchResults() {
-        List<String> searchResultsLists = new ArrayList<String>();
-        for (WebElement searchResult : searchResultsList) {
+        List<String> searchResultsList = new ArrayList<String>();
+        for (WebElement searchResult : searchResults) {
+            ((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView();", searchResult);
             String searchResultText = searchResult.getText();
-            searchResultsLists.add(searchResultText);
+            searchResultsList.add(searchResultText);
         }
-        return searchResultsLists;
+        return searchResultsList;
     }
 }
