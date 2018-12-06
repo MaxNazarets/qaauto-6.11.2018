@@ -16,6 +16,9 @@ public class LoginPage extends BasePage {
     @FindBy(xpath = "//input[@id='login-submit']")
     private WebElement signInButton;
 
+    @FindBy(xpath = "//a[@class='link-forgot-password']")
+    private WebElement forgotPasswordButton;
+
     public LoginPage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
@@ -45,5 +48,11 @@ public class LoginPage extends BasePage {
     public boolean enableSignInButton() {
         return signInButton.isEnabled();
     }
+
+    public RequestResetPasswordPage clickForgotPasswordButton() {
+        forgotPasswordButton.click();
+        return new RequestResetPasswordPage(driver);}
+
+
 
 }

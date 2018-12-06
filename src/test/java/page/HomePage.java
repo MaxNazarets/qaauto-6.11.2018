@@ -31,10 +31,6 @@ public class HomePage extends BasePage {
                 && driver.getCurrentUrl().equals("https://www.linkedin.com/feed/");
     }
 
-    public String acceptWelcomeMessage() {
-        return welcomeMessage.getText();
-    }
-
     public String acceptProfileName() {
         return driver.findElement(By.xpath("//div[@class='nav-settings__member-info-container']/h3")).getText();
     }
