@@ -4,6 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import util.GMailService;
 
 public class RequestResetPasswordPage extends BasePage{
 
@@ -21,11 +22,14 @@ public class RequestResetPasswordPage extends BasePage{
 
     public boolean isPageLoaded() {
         return findAccountButton.isDisplayed()
-                && driver.getTitle().equals("Reset Password | LinkedIn")
+                && driver.getTitle().contains("Reset Password | LinkedIn")
                 && driver.getCurrentUrl().contains("/uas/request-password-reset");
     }
 
-    public SubmitResetPasswordPage findAccountSubmit(String userEmail) {
+    public SubmitResetPasswordPage findAccount(String userEmail) {
+        gMailService = new GMailService();
+        gMailService.connect();
+
         emailField.sendKeys(userEmail);
         findAccountButton.click();
         return new SubmitResetPasswordPage(driver);

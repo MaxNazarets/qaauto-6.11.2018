@@ -6,6 +6,33 @@ import page.*;
 
 public class ResetPasswordTest extends BaseTest {
 
+    /**
+     * Precondition
+     * - Open Browser
+     * - Navigate to linkedin.com
+     *
+     * Scenario:
+     * - Login Page is loaded
+     * - Click on "ForgotPassword" button
+     * - Verify RequestResetPassword Page is loaded
+     * - Enter in email field current gmail's email address
+     * - Click on "Find account" button
+     * - Open PostBox
+     * - Open Email's reset mail
+     * - Get URL from the mail
+     * - Put this URL in browser
+     * - Verify SetNewPassword Page is loaded
+     * - Enter in "New Password" field different pass
+     * - Enter in "Retype Password" field the same pass
+     * - Click on "Submit" button
+     * - Verify SuccessResetPassword Page is loaded
+     * - Click on "Go To Homepage" button
+     * - Verify Home Page is loaded
+     *
+     * PostCondition:
+     * - Close browser
+     */
+
     @Test
     public void resetPasswordTest() {
     String userEmail = "max.nazarets.tst@gmail.com";
@@ -16,19 +43,18 @@ public class ResetPasswordTest extends BaseTest {
     RequestResetPasswordPage requestResetPasswordPage = loginPage.clickForgotPasswordButton();
     Assert.assertTrue(requestResetPasswordPage.isPageLoaded(),"Page is not loaded");
 
-    requestResetPasswordPage.findAccountSubmit(userEmail);
+    requestResetPasswordPage.findAccount(userEmail);
 
-        try {
-            Thread.sleep(30000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+    SubmitResetPasswordPage submitResetPasswordPage = new SubmitResetPasswordPage(driver);
+    Assert.assertTrue(submitResetPasswordPage.isPageLoaded(),"Page is not loaded");
 
-    SetNewPasswordPage setNewPasswordPage = new SetNewPasswordPage(driver);
+    SetNewPasswordPage setNewPasswordPage = submitResetPasswordPage.navigateToLinkFromEmail();
+
+
     Assert.assertTrue(setNewPasswordPage.isPageLoaded(),"Page is not loaded");
 
-    SuccessResetPasswordPage successResetPasswordPage = setNewPasswordPage.acceptNewPassword(newPassword);
-    Assert.assertTrue(successResetPasswordPage.isPageLoaded(),"Page is not loaded");
+//    SuccessResetPasswordPage successResetPasswordPage = setNewPasswordPage.acceptNewPassword(newPassword);
+//    Assert.assertTrue(successResetPasswordPage.isPageLoaded(),"Page is not loaded");
 //
 //    HomePage homePage = successResetPasswordPage.clickGoToHomepageButton();
 //    Assert.assertTrue(homePage.isPageLoaded(),"Page is not loaded");

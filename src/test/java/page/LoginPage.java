@@ -5,6 +5,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+/**
+ * PageObject class for LoginPage.
+ */
 public class LoginPage extends BasePage {
 
     @FindBy(xpath = "//input[@id='login-email']")
@@ -19,6 +22,10 @@ public class LoginPage extends BasePage {
     @FindBy(xpath = "//a[@class='link-forgot-password']")
     private WebElement forgotPasswordButton;
 
+    /**
+     * Constructor of LoginPage class.
+     * @param driver - webDriver instance from Test.
+     */
     public LoginPage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
@@ -39,16 +46,28 @@ public class LoginPage extends BasePage {
         }
     }
 
+    /**
+     * Method to check if page is loaded.
+     * @return true/false
+     */
     public boolean isPageLoaded() {
         return signInButton.isDisplayed()
                 && driver.getTitle().equals("LinkedIn: Log In or Sign Up")
                 && driver.getCurrentUrl().equals("https://www.linkedin.com/");
     }
 
+    /**
+     * Method that "SignIn" button is Enabled on page.
+     * @return true/false
+     */
     public boolean enableSignInButton() {
         return signInButton.isEnabled();
     }
 
+    /**
+     * Method that click on 'ForgotPassword' link.
+     * @return new RequestResetPasswordPage object.
+     */
     public RequestResetPasswordPage clickForgotPasswordButton() {
         forgotPasswordButton.click();
         return new RequestResetPasswordPage(driver);}

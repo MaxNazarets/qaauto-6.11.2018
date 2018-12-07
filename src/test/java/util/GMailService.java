@@ -26,7 +26,7 @@ public class GMailService {
      * @param args - dummy args for main()
      */
     public static void main(String[] args) {
-        String messageSubject = "MaxTest, here's the link to reset your password";
+        String messageSubject = "here's the link to reset your password";
         String messageTo = "max.nazarets.tst@gmail.com";
         String messageFrom = "security-noreply@linkedin.com";
 
