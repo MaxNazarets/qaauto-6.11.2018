@@ -20,7 +20,7 @@ public class LoginTest extends BaseTest{
     @Test(dataProvider = "validLoginData")
     public void positiveLoginTest(String userEmail, String userPass) {
         HomePage homePage = loginPage.login(userEmail, userPass);
-        Assert.assertTrue(homePage.isPageLoaded(),"Home page is not loaded.");
+        Assert.assertTrue(homePage.isPageLoaded(),"HomePage is not loaded.");
         homePage.selectMeButton();
         Assert.assertEquals(homePage.acceptProfileName(),"MaxTest NazaretsTest", "Profile name of user is wrong");
     }
@@ -41,7 +41,7 @@ public class LoginTest extends BaseTest{
     public void negativeLoginTest(String userEmail, String userPass) {
         loginPage.login(userEmail, userPass);
         Assert.assertFalse(loginPage.enableSignInButton(), "signIn button is active");
-        Assert.assertTrue(loginPage.isPageLoaded(),"LogIn page is not loaded");
+        Assert.assertTrue(loginPage.isPageLoaded(),"LoginPage is not loaded");
     }
 
     @DataProvider
@@ -76,7 +76,7 @@ public class LoginTest extends BaseTest{
                                         String errorEmailMessage,
                                         String errorPassMessage) {
         LoginSubmitPage loginSubmitPage = loginPage.login(userEmail, userPass);
-        Assert.assertTrue(loginSubmitPage.isPageLoaded(),"Login Submit page is not loaded.");
+        Assert.assertTrue(loginSubmitPage.isPageLoaded(),"LoginSubmitPage is not loaded.");
         Assert.assertEquals(loginSubmitPage.getErrorEmailField(), errorEmailMessage,"Error is not be showed");
         Assert.assertEquals(loginSubmitPage.getErrorPassField(), errorPassMessage, "errorPass is wrong");
     }

@@ -31,6 +31,13 @@ public class LoginPage extends BasePage {
         PageFactory.initElements(driver, this);
     }
 
+    /**
+     * Method to check login into website on right pages
+     * @param userEmail - String value for field.
+     * @param userPass - String value for field.
+     * @param <T> - Generic method for PageObjects
+     * @return one of three new PageObjects (HomePage, LoginSubmitPage, LoginPage).
+     */
     public <T> T login(String userEmail, String userPass) {
         emailField.sendKeys(userEmail);
         passwordField.sendKeys(userPass);
@@ -57,7 +64,7 @@ public class LoginPage extends BasePage {
     }
 
     /**
-     * Method that "SignIn" button is Enabled on page.
+     * Method to check "SignIn" button is enabled on page.
      * @return true/false
      */
     public boolean enableSignInButton() {

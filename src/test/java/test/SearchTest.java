@@ -31,10 +31,10 @@ public class SearchTest extends BaseTest{
         HomePage homePage = loginPage.login("max.nazarets.tst@gmail.com","makrusnet123");
         String searchTerm = "HR";
 
-        Assert.assertTrue(homePage.isPageLoaded(),"Home page is not loaded");
+        Assert.assertTrue(homePage.isPageLoaded(),"HomePage is not loaded");
 
         SearchResultsPage searchResultsPage = homePage.search(searchTerm);
-        Assert.assertTrue(searchResultsPage.isPageLoaded(),"SearchResults page is not loaded");
+        Assert.assertTrue(searchResultsPage.isPageLoaded(),"SearchResultsPage is not loaded");
         Assert.assertEquals(searchResultsPage.getSearchResultsCount(), 10, "Count of searchResultsList is not equal 10");
 
         List<String> searchResultsList = searchResultsPage.getSearchResults();

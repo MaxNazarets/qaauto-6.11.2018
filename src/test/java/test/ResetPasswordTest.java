@@ -38,26 +38,26 @@ public class ResetPasswordTest extends BaseTest {
     String userEmail = "max.nazarets.tst@gmail.com";
     String newPassword = "makrusnet123";
 
-    Assert.assertTrue(loginPage.isPageLoaded(),"Page is not loaded");
+    Assert.assertTrue(loginPage.isPageLoaded(),"LoginPage is not loaded");
 
     RequestResetPasswordPage requestResetPasswordPage = loginPage.clickForgotPasswordButton();
-    Assert.assertTrue(requestResetPasswordPage.isPageLoaded(),"Page is not loaded");
+    Assert.assertTrue(requestResetPasswordPage.isPageLoaded(),"RequestResetPasswordPage is not loaded");
 
     requestResetPasswordPage.findAccount(userEmail);
 
     SubmitResetPasswordPage submitResetPasswordPage = new SubmitResetPasswordPage(driver);
-    Assert.assertTrue(submitResetPasswordPage.isPageLoaded(),"Page is not loaded");
+    Assert.assertTrue(submitResetPasswordPage.isPageLoaded(),"SubmitResetPasswordPage is not loaded");
 
     SetNewPasswordPage setNewPasswordPage = submitResetPasswordPage.navigateToLinkFromEmail();
 
 
-    Assert.assertTrue(setNewPasswordPage.isPageLoaded(),"Page is not loaded");
+    Assert.assertTrue(setNewPasswordPage.isPageLoaded(),"SetNewPasswordPage is not loaded");
 
 //    SuccessResetPasswordPage successResetPasswordPage = setNewPasswordPage.acceptNewPassword(newPassword);
-//    Assert.assertTrue(successResetPasswordPage.isPageLoaded(),"Page is not loaded");
+//    Assert.assertTrue(successResetPasswordPage.isPageLoaded(),"SuccessResetPasswordPage is not loaded");
 //
 //    HomePage homePage = successResetPasswordPage.clickGoToHomepageButton();
-//    Assert.assertTrue(homePage.isPageLoaded(),"Page is not loaded");
+//    Assert.assertTrue(homePage.isPageLoaded(),"HomePage is not loaded");
 
     }
 
