@@ -50,15 +50,13 @@ public class ResetPasswordTest extends BaseTest {
 
     SetNewPasswordPage setNewPasswordPage = submitResetPasswordPage.navigateToLinkFromEmail();
 
-
     Assert.assertTrue(setNewPasswordPage.isPageLoaded(),"SetNewPasswordPage is not loaded");
 
-//    SuccessResetPasswordPage successResetPasswordPage = setNewPasswordPage.acceptNewPassword(newPassword);
-//    Assert.assertTrue(successResetPasswordPage.isPageLoaded(),"SuccessResetPasswordPage is not loaded");
-//
-//    HomePage homePage = successResetPasswordPage.clickGoToHomepageButton();
-//    Assert.assertTrue(homePage.isPageLoaded(),"HomePage is not loaded");
+    SuccessResetPasswordPage successResetPasswordPage = setNewPasswordPage.acceptNewPassword(newPassword);
+    Assert.assertTrue(successResetPasswordPage.isPageLoaded(),"SuccessResetPasswordPage is not loaded");
 
+    HomePage homePage = successResetPasswordPage.clickGoToHomepageButton();
+    Assert.assertTrue(homePage.isPageLoaded(),"HomePage is not loaded");
     }
 
 }
