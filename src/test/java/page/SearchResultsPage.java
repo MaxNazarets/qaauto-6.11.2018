@@ -21,6 +21,7 @@ public class SearchResultsPage extends BasePage {
     public SearchResultsPage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
+        waitUntilElementIsVisible(searchFiltersBar, 5);
     }
 
     @FindBy(xpath = "//div[contains(@class, 'search-filters-bar')]")

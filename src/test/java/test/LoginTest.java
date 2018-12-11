@@ -55,13 +55,14 @@ public class LoginTest extends BaseTest{
                         "Hmm, we don't recognize that email. Please try again.", ""},
 
                 {"max.nazarets.tsstgmail.com", "makrusnet123",
-                        "Please enter a valid email address", ""},
+                        "Please enter a valid email address.", ""},
                 {"max.nazarets.tst@@gmailcom","makrusnet123",
-                        "Please enter a valid email address", ""},
+                        "We don't recognize that email." +
+                                "Did you mean: @gmail.com?", ""},
                 {"makrusnet123", "max.nazarets.tst@gmail.com",
-                        "Please enter a valid email address", ""},
+                        "Please enter a valid email address.", ""},
                 {"<script>alert(123)</script>", "makrusnet123",
-                        "Please enter a valid email address", ""},
+                        "Please enter a valid email address.", ""},
 
                 {"max.nazarets.tst@gmail.com", "test123",
                         "", "Hmm, that's not the right password. Please try again or request a new one."},

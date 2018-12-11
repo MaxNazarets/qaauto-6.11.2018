@@ -58,5 +58,4 @@ public class ResetPasswordTest extends BaseTest {
     HomePage homePage = successResetPasswordPage.clickGoToHomepageButton();
     Assert.assertTrue(homePage.isPageLoaded(),"HomePage is not loaded");
     }
-
 }

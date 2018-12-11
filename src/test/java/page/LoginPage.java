@@ -32,10 +32,10 @@ public class LoginPage extends BasePage {
     }
 
     /**
-     * Method to check login into website on right pages
-     * @param userEmail - String value for field.
-     * @param userPass - String value for field.
-     * @param <T> - Generic method for PageObjects
+     * Method to login into website on right pages with specific credentials.
+     * @param userEmail - String value for userEmail.
+     * @param userPass - String value for userPass.
+     * @param <T> - generic type of returned PageObjects.
      * @return one of three new PageObjects (HomePage, LoginSubmitPage, LoginPage).
      */
     public <T> T login(String userEmail, String userPass) {
@@ -78,7 +78,5 @@ public class LoginPage extends BasePage {
     public RequestResetPasswordPage clickForgotPasswordButton() {
         forgotPasswordButton.click();
         return new RequestResetPasswordPage(driver);}
-
-
 
 }

@@ -63,17 +63,12 @@ public class HomePage extends BasePage {
 
     /**
      * Method that fill the searchField and press "ENTER".
-     * @param searchTerm - String value in field.
+     * @param searchTerm - String value searchTerm.
      * @return new SearchResultsPage object.
      */
     public SearchResultsPage search(String searchTerm) {
         searchField.sendKeys(searchTerm);
         searchField.sendKeys(Keys.ENTER);
-        try {
-            sleep(3000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
         return new SearchResultsPage(driver);
     }
 }
