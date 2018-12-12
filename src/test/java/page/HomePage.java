@@ -54,11 +54,12 @@ public class HomePage extends BasePage {
      * Method that click on "Me" button in toolbar.
      */
     public void selectMeButton() {meButton.click();
-        try {
-            sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+    waitUntilElementIsVisible(meButton);
+//        try {
+//            sleep(1000);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
     }
 
     /**

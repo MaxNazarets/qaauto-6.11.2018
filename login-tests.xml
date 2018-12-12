@@ -1,7 +1,7 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
 <suite name="Linkedin Login tests">
-
+    <parameter name="browserName" value="chrome"/>
     <test name="Positive">
         <classes>
             <class name="test.LoginTest">
