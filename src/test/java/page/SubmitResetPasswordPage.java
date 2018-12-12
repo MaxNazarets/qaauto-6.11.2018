@@ -9,10 +9,11 @@ import org.openqa.selenium.support.PageFactory;
 /**
  * PageObject class for SubmitResetPasswordPage.
  */
-public class SubmitResetPasswordPage extends BasePage{
+public class SubmitResetPasswordPage extends BasePage {
 
     /**
      * Constructor of SubmitResetPasswordPage class.
+     *
      * @param driver - webDriver instance from Test.
      */
     public SubmitResetPasswordPage(WebDriver driver) {
@@ -26,6 +27,7 @@ public class SubmitResetPasswordPage extends BasePage{
 
     /**
      * Method to check if page is loaded.
+     *
      * @return true/false
      */
     public boolean isPageLoaded() {
@@ -36,6 +38,7 @@ public class SubmitResetPasswordPage extends BasePage{
 
     /**
      * Method that navigate to Link from Email.
+     *
      * @return new SetNewPasswordPage object.
      */
     public SetNewPasswordPage navigateToLinkFromEmail() {
@@ -46,7 +49,7 @@ public class SubmitResetPasswordPage extends BasePage{
         String message = gMailService.waitMessage(messageSubject, messageTo, messageFrom, 180);
         System.out.println("Content: " + message);
 
-        String resetPasswordLink = StringUtils.substringBetween(message, "line-height:1.25;\"><a href=\"","\" style").replace("amp;","");
+        String resetPasswordLink = StringUtils.substringBetween(message, "line-height:1.25;\"><a href=\"", "\" style").replace("amp;", "");
         driver.navigate().to(resetPasswordLink);
 
         return new SetNewPasswordPage(driver);

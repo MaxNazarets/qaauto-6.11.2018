@@ -27,7 +27,7 @@ public class BaseTest {
             driver = new ChromeDriver();
         } else {
             try {
-                throw new Exception("browserName "+browserName+" is not supported.");
+                throw new Exception("browserName " + browserName + " is not supported.");
             } catch (Exception e) {
                 e.printStackTrace();
             }

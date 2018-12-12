@@ -9,10 +9,11 @@ import util.GMailService;
 /**
  * PageObject class for RequestResetPasswordPage.
  */
-public class RequestResetPasswordPage extends BasePage{
+public class RequestResetPasswordPage extends BasePage {
 
     /**
      * Constructor of RequestResetPasswordPage class.
+     *
      * @param driver - webDriver instance from Test.
      */
     public RequestResetPasswordPage(WebDriver driver) {
@@ -29,6 +30,7 @@ public class RequestResetPasswordPage extends BasePage{
 
     /**
      * Method to check if page is loaded.
+     *
      * @return true/false
      */
     public boolean isPageLoaded() {
@@ -39,6 +41,7 @@ public class RequestResetPasswordPage extends BasePage{
 
     /**
      * Method that connect to GmailService and click on 'findAccount' button.
+     *
      * @param userEmail - input text in field.
      * @return new SubmitResetPasswordPage object.
      */

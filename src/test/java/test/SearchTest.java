@@ -7,13 +7,13 @@ import page.SearchResultsPage;
 
 import java.util.List;
 
-public class SearchTest extends BaseTest{
+public class SearchTest extends BaseTest {
 
     /**
      * Precondition
      * - Open Browser
      * - Navigate to linkedin.com
-     *
+     * <p>
      * Scenario:
      * - Login with valid credentials
      * - Verify Home Page is loaded
@@ -22,19 +22,19 @@ public class SearchTest extends BaseTest{
      * - Verify SearchResult Page is loaded
      * - Verify resultsList contains 10 items
      * - Verify each item contains searchTerm
-     *
+     * <p>
      * PostCondition:
      * - Close browser
      */
     @Test
     public void basicSearchTest() {
-        HomePage homePage = loginPage.login("max.nazarets.tst@gmail.com","makrusnet123");
+        HomePage homePage = loginPage.login("max.nazarets.tst@gmail.com", "makrusnet123");
         String searchTerm = "HR";
 
-        Assert.assertTrue(homePage.isPageLoaded(),"HomePage is not loaded");
+        Assert.assertTrue(homePage.isPageLoaded(), "HomePage is not loaded");
 
         SearchResultsPage searchResultsPage = homePage.search(searchTerm);
-        Assert.assertTrue(searchResultsPage.isPageLoaded(),"SearchResultsPage is not loaded");
+        Assert.assertTrue(searchResultsPage.isPageLoaded(), "SearchResultsPage is not loaded");
         Assert.assertEquals(searchResultsPage.getSearchResultsCount(), 10, "Count of searchResultsList is not equal 10");
 
         List<String> searchResultsList = searchResultsPage.getSearchResults();

@@ -23,6 +23,7 @@ public class GMailService {
 
     /**
      * Example of util.GMailService usage
+     *
      * @param args - dummy args for main()
      */
     public static void main(String[] args) {
@@ -39,17 +40,18 @@ public class GMailService {
     /**
      * Default util.GMailService constructor with predefined user/pass credentials
      */
-    public GMailService(){
+    public GMailService() {
         this.user = "max.nazarets.tst@gmail.com";
         this.pass = "makrusnet123";
     }
 
     /**
      * Custom util.GMailService constructor that allows to set user/pass credentials
+     *
      * @param user - gMail acc username
      * @param pass - gMail acc pass
      */
-    public GMailService(String user, String pass){
+    public GMailService(String user, String pass) {
         this.user = user;
         this.pass = pass;
     }
@@ -81,7 +83,7 @@ public class GMailService {
     }
 
     public String waitMessage(final String messageSubject, final String messageTo, final String messageFrom,
-                              long timeoutInSec){
+                              long timeoutInSec) {
         try {
             inboxFolder.open(Folder.READ_WRITE);
         } catch (MessagingException e) {
@@ -140,14 +142,14 @@ public class GMailService {
     private String getText(Part p) throws
             MessagingException, IOException {
         if (p.isMimeType("text/*")) {
-            String s = (String)p.getContent();
+            String s = (String) p.getContent();
             textIsHtml = p.isMimeType("text/html");
             return s;
         }
 
         if (p.isMimeType("multipart/alternative")) {
             // prefer html text over plain text
-            Multipart mp = (Multipart)p.getContent();
+            Multipart mp = (Multipart) p.getContent();
             String text = null;
             for (int i = 0; i < mp.getCount(); i++) {
                 Part bp = mp.getBodyPart(i);
@@ -165,7 +167,7 @@ public class GMailService {
             }
             return text;
         } else if (p.isMimeType("multipart/*")) {
-            Multipart mp = (Multipart)p.getContent();
+            Multipart mp = (Multipart) p.getContent();
             for (int i = 0; i < mp.getCount(); i++) {
                 String s = getText(mp.getBodyPart(i));
                 if (s != null)

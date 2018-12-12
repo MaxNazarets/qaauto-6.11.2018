@@ -24,6 +24,7 @@ public class LoginPage extends BasePage {
 
     /**
      * Constructor of LoginPage class.
+     *
      * @param driver - webDriver instance from Test.
      */
     public LoginPage(WebDriver driver) {
@@ -33,9 +34,10 @@ public class LoginPage extends BasePage {
 
     /**
      * Method to login into website on right pages with specific credentials.
+     *
      * @param userEmail - String value for userEmail.
-     * @param userPass - String value for userPass.
-     * @param <T> - generic type of returned PageObjects.
+     * @param userPass  - String value for userPass.
+     * @param <T>       - generic type of returned PageObjects.
      * @return one of three new PageObjects (HomePage, LoginSubmitPage, LoginPage).
      */
     public <T> T login(String userEmail, String userPass) {
@@ -47,14 +49,14 @@ public class LoginPage extends BasePage {
         }
         if (driver.getCurrentUrl().contains("/login-submit")) {
             return (T) new LoginSubmitPage(driver);
-        }
-        else {
+        } else {
             return (T) new LoginPage(driver);
         }
     }
 
     /**
      * Method to check if page is loaded.
+     *
      * @return true/false
      */
     public boolean isPageLoaded() {
@@ -65,6 +67,7 @@ public class LoginPage extends BasePage {
 
     /**
      * Method to check "SignIn" button is enabled on page.
+     *
      * @return true/false
      */
     public boolean enableSignInButton() {
@@ -73,10 +76,12 @@ public class LoginPage extends BasePage {
 
     /**
      * Method that click on 'ForgotPassword' link.
+     *
      * @return new RequestResetPasswordPage object.
      */
     public RequestResetPasswordPage clickForgotPasswordButton() {
         forgotPasswordButton.click();
-        return new RequestResetPasswordPage(driver);}
+        return new RequestResetPasswordPage(driver);
+    }
 
 }

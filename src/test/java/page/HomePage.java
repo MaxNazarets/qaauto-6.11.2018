@@ -23,6 +23,7 @@ public class HomePage extends BasePage {
 
     /**
      * Constructor of HomePage class.
+     *
      * @param driver - webDriver instance from Test.
      */
     public HomePage(WebDriver driver) {
@@ -32,6 +33,7 @@ public class HomePage extends BasePage {
 
     /**
      * Method to check if page is loaded.
+     *
      * @return true/false
      */
     public boolean isPageLoaded() {
@@ -42,6 +44,7 @@ public class HomePage extends BasePage {
 
     /**
      * Method that getText of ProfileName element.
+     *
      * @return String value of element
      */
     public String acceptProfileName() {
@@ -51,8 +54,9 @@ public class HomePage extends BasePage {
     /**
      * Method that click on "Me" button in toolbar.
      */
-    public void selectMeButton() {meButton.click();
-    waitUntilElementIsVisible(meButton);
+    public void selectMeButton() {
+        meButton.click();
+        waitUntilElementIsVisible(meButton);
 //        try {
 //            sleep(1000);
 //        } catch (InterruptedException e) {
@@ -62,6 +66,7 @@ public class HomePage extends BasePage {
 
     /**
      * Method that fill the searchField and press "ENTER".
+     *
      * @param searchTerm - String value searchTerm.
      * @return new SearchResultsPage object.
      */

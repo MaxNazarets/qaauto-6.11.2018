@@ -8,10 +8,11 @@ import org.openqa.selenium.support.PageFactory;
 /**
  * PageObject class for SetNewPasswordPage.
  */
-public class SetNewPasswordPage extends BasePage{
+public class SetNewPasswordPage extends BasePage {
 
     /**
      * Constructor of SetNewPasswordPage class.
+     *
      * @param driver - webDriver instance from Test.
      */
     public SetNewPasswordPage(WebDriver driver) {
@@ -31,6 +32,7 @@ public class SetNewPasswordPage extends BasePage{
 
     /**
      * Method to check if page is loaded.
+     *
      * @return true/false
      */
     public boolean isPageLoaded() {
@@ -41,6 +43,7 @@ public class SetNewPasswordPage extends BasePage{
 
     /**
      * Method that click on 'submit' button.
+     *
      * @param newPassword - String value of field.
      * @return new SuccessResetPasswordPage object.
      */

@@ -22,6 +22,7 @@ public class LoginSubmitPage extends BasePage {
 
     /**
      * Constructor of LoginSubmitPage class.
+     *
      * @param driver - webDriver instance from Test.
      */
     public LoginSubmitPage(WebDriver driver) {
@@ -31,6 +32,7 @@ public class LoginSubmitPage extends BasePage {
 
     /**
      * Method to check if page is loaded.
+     *
      * @return true/false
      */
     public boolean isPageLoaded() {
@@ -41,6 +43,7 @@ public class LoginSubmitPage extends BasePage {
 
     /**
      * Method to getText from errorEmailField.
+     *
      * @return String value of field
      */
     public String getErrorEmailField() {
@@ -49,6 +52,7 @@ public class LoginSubmitPage extends BasePage {
 
     /**
      * Method to getText from errorPassField.
+     *
      * @return String value of field
      */
     public String getErrorPassField() {

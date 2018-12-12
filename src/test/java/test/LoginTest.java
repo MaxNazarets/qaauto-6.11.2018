@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 import page.HomePage;
 import page.LoginSubmitPage;
 
-public class LoginTest extends BaseTest{
+public class LoginTest extends BaseTest {
 
     @DataProvider
     public Object[][] validLoginData() {
@@ -20,14 +20,14 @@ public class LoginTest extends BaseTest{
     @Test(dataProvider = "validLoginData")
     public void positiveLoginTest(String userEmail, String userPass) {
         HomePage homePage = loginPage.login(userEmail, userPass);
-        Assert.assertTrue(homePage.isPageLoaded(),"HomePage is not loaded.");
+        Assert.assertTrue(homePage.isPageLoaded(), "HomePage is not loaded.");
         homePage.selectMeButton();
-        Assert.assertEquals(homePage.acceptProfileName(),"MaxTest NazaretsTest", "Profile name of user is wrong");
+        Assert.assertEquals(homePage.acceptProfileName(), "MaxTest NazaretsTest", "Profile name of user is wrong");
     }
 
     @DataProvider
     public Object[][] inValidLoginData() {
-        return new Object[][] {
+        return new Object[][]{
                 {"", ""},
                 {"", "makrusnet123"},
                 {"max.nazarets.tst@gmail.com", ""},
@@ -41,7 +41,7 @@ public class LoginTest extends BaseTest{
     public void negativeLoginTest(String userEmail, String userPass) {
         loginPage.login(userEmail, userPass);
         Assert.assertFalse(loginPage.enableSignInButton(), "signIn button is active");
-        Assert.assertTrue(loginPage.isPageLoaded(),"LoginPage is not loaded");
+        Assert.assertTrue(loginPage.isPageLoaded(), "LoginPage is not loaded");
     }
 
     @DataProvider
@@ -57,7 +57,7 @@ public class LoginTest extends BaseTest{
 
                 {"max.nazarets.tstgmail.com", "makrusnet123",
                         "Please enter a valid email address.", ""},
-                {"max.nazarets.tst@@gmailcom","makrusnet123",
+                {"max.nazarets.tst@@gmailcom", "makrusnet123",
                         "Hmm, we don't recognize that email. Please try again.", ""},
                 {"makrusnet123", "max.nazarets.tst@gmail.com",
                         "Please enter a valid email address.", ""},
@@ -77,8 +77,8 @@ public class LoginTest extends BaseTest{
                                         String errorEmailMessage,
                                         String errorPassMessage) {
         LoginSubmitPage loginSubmitPage = loginPage.login(userEmail, userPass);
-        Assert.assertTrue(loginSubmitPage.isPageLoaded(),"LoginSubmitPage is not loaded.");
-        Assert.assertEquals(loginSubmitPage.getErrorEmailField(), errorEmailMessage,"Error is not be showed");
+        Assert.assertTrue(loginSubmitPage.isPageLoaded(), "LoginSubmitPage is not loaded.");
+        Assert.assertEquals(loginSubmitPage.getErrorEmailField(), errorEmailMessage, "Error is not be showed");
         Assert.assertEquals(loginSubmitPage.getErrorPassField(), errorPassMessage, "errorPass is wrong");
     }
 
